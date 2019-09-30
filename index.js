@@ -1,10 +1,11 @@
-let totalAmount = 0;
 function sum (num) {
-    if (num) {
-        totalAmount += num;
-        return sum
-    } else {
-        return totalAmount;
+    let totalAmount = 0;
+    function increaseTotalAmount(num) {
+        if (num || num === 0) {
+            totalAmount += num
+        }
+        return increaseTotalAmount;
     }
+    return increaseTotalAmount(num)
 }
-console.log(sum(1)(3)(5)());
+console.log(sum(0)(8)());
