@@ -16,9 +16,9 @@ const getSelector = element => {
     return selector
 };
 
-const uniqPath = event => {
+const uniqPath = elem => {
     let uniqSelector;
-    const currentElement = event.target;
+    const currentElement = elem;
     let parentElement;
     const pathArr = [];
     for (var element = currentElement; element.tagName !== "BODY"; element = parentElement) {
@@ -29,4 +29,4 @@ const uniqPath = event => {
     alert(uniqSelector);
     console.log(document.querySelectorAll(uniqSelector));
 };
-addEventListener('click', uniqPath);
+
