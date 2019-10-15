@@ -1,27 +1,32 @@
-function uniqPath(startingElement)
-{
+const getSelector = element => {
+    let selector;
+    const parentElement = element.parentNode;
+    const allChildrenParentElement = [...parentElement.children];
+
+    if (element.id) {
+        selector = `#${element.id}`
+    } else if (element.className) {
+        selector = `${element.tagName}.${element.className}`
+    } else {
+        selector = element.tagName
+    }
+    if (allChildrenParentElement.length > 1) {
+        selector = `${selector}:nth-child(${allChildrenParentElement.indexOf(element)+1})`
+    }
+    return selector
+};
+
+const uniqPath = event => {
     let uniqSelector;
-    const currentElement = document.querySelector(startingElement)
+    const currentElement = event.target;
     let parentElement;
     const pathArr = [];
     for (var element = currentElement; element.tagName !== "BODY"; element = parentElement) {
-        parentElement = element.parentNode
-        pathArr.push(getSelector(parentElement))
+        pathArr.push(getSelector(element));
+        parentElement = element.parentNode;
     }
-    function getSelector(parentElement) {
-        let selector;
-        if (parentElement.id) {
-            selector = `#${parentElement.id}`
-        } else if (parentElement.className) {
-            selector = `${parentElement.tagName}.${parentElement.className}`
-        } else {
-            selector = parentElement.tagName
-        }
-        return selector
-    }
-    pathArr.reverse().push(getSelector(currentElement))
-    uniqSelector = pathArr.join(' > ')
-    console.log(uniqSelector)
-    return uniqSelector
-}
-console.log(document.querySelectorAll(uniqPath('.item')))
+    uniqSelector = pathArr.reverse().join(' > ');
+    alert(uniqSelector);
+    console.log(document.querySelectorAll(uniqSelector));
+};
+addEventListener('click', uniqPath);
