@@ -42,6 +42,20 @@ const cities = [
             temp_min: '5',
             temp_max: '20'
         }
+    },
+    {
+        id: 4,
+        name: 'Paris',
+        country: 'France',
+        wind: {
+            speed: '10',
+            direction: 'west'
+        },
+        temperature: {
+            average_temperature: '23',
+            temp_min: '-5',
+            temp_max: '40'
+        }
     }
 ]
 

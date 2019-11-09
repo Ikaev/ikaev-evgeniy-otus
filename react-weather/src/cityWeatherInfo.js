@@ -1,8 +1,15 @@
 import React from 'react'
 
-const CityWeatherInfo = ({ city, addToFavorites }) => {
+const CityWeatherInfo = ({ city, addToFavorites, showButton }) => {
     const handleCLick = () => {
         addToFavorites(city.id)
+    };
+    const ShowButton = (showButton) => {
+      if (showButton) {
+          return <button onClick={handleCLick}>
+              Add to favorites
+          </button>
+      }
     };
     if (city) {
         return <div>
@@ -30,7 +37,7 @@ const CityWeatherInfo = ({ city, addToFavorites }) => {
                 <span>Max temperature:</span>
                 <span>${city.temperature.temp_max}C</span>
             </div>
-            <button onClick={handleCLick}>Add to favorites</button>
+            <ShowButton/>
         </div>
     }
     return <div>

@@ -9,15 +9,15 @@ export class Layout extends Component {
         this.state = {
             favoritesCities: [],
             searchCity: '',
-            changeCity: ''
+            changeCity: '',
         };
         this.addToFavorites = this.addToFavorites.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.deleteInFavorites = this.deleteInFavorites.bind(this)
+        this.deleteInFavorites = this.deleteInFavorites.bind(this);
         this.cities = props.cities;
     }
     addToFavorites(cityId) {
-        const favoritesCity = this.cities.find((city) => city.id === cityId)
+        const favoritesCity = this.cities.find((city) => city.id === cityId);
         const favoritesCities = this.state.favoritesCities.map(item => item);
         favoritesCities.push(favoritesCity);
         this.setState({favoritesCities});
@@ -36,7 +36,7 @@ export class Layout extends Component {
     }
 
     render() {
-        const { favoritesCities, changeCity } = this.state;
+        const { favoritesCities, changeCity, showAddFavoritesButton } = this.state;
         return (
             <div style={{height: "1000px"}}>
                 <div style={{float: "left", margin: "0 15px 0 15px", width: '300px'}}>
