@@ -4,12 +4,12 @@ const CityWeatherInfo = ({ city, addToFavorites, showButton }) => {
     const handleCLick = () => {
         addToFavorites(city.id)
     };
-    const ShowButton = (showButton) => {
-      if (showButton) {
+    const ShowButton = ( { showBtn }) => {
+      if (showBtn) {
           return <button onClick={handleCLick}>
               Add to favorites
           </button>
-      }
+      } else return null
     };
     if (city) {
         return <div>
@@ -27,17 +27,17 @@ const CityWeatherInfo = ({ city, addToFavorites, showButton }) => {
             <h4>Temperature info</h4>
             <div>
                 <span>Average temperature:</span>
-                <span>${city.temperature.average_temperature}C</span>
+                <span> {city.temperature.average_temperature}C</span>
             </div>
             <div>
                 <span>Min temperature:</span>
-                <span>${city.temperature.temp_min}C</span>
+                <span> {city.temperature.temp_min}C</span>
             </div>
             <div>
                 <span>Max temperature:</span>
-                <span>${city.temperature.temp_max}C</span>
+                <span> {city.temperature.temp_max}C</span>
             </div>
-            <ShowButton/>
+            <ShowButton showBtn={showButton}/>
         </div>
     }
     return <div>

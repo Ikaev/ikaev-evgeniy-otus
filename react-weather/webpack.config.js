@@ -8,6 +8,9 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"]
   },
+  watchOptions: {
+    poll: 1000
+  },
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "index.js"
