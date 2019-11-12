@@ -7,17 +7,19 @@ export class Layout extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            favoritesCities: [],
             searchCity: '',
-            changeCity: '',
-            showAddFavoritesButton: true
+            changeCityId: '',
+            showAddFavoritesButton: true,
+            cities: props.cities
         };
         this.addToFavorites = this.addToFavorites.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.deleteInFavorites = this.deleteInFavorites.bind(this);
-        this.checkBeOnFavoritesCities = this.checkBeOnFavoritesCities.bind(this)
-        this.cities = props.cities;
+        this.checkBeOnFavoritesCities = this.checkBeOnFavoritesCities.bind(this);
+        this.prepareSelectOptionsArray = this.prepareSelectOptionsArray.bind(this);
+        this.cities = this.state.cities;
     }
+    // Переписать на работу с объектом
     addToFavorites(cityId) {
         const favoritesCity = this.cities.find((city) => city.id === cityId);
         const favoritesCities = this.state.favoritesCities.map(item => item);
@@ -28,13 +30,12 @@ export class Layout extends Component {
     deleteInFavorites(cityId) {
         const favoritesCities = this.state.favoritesCities.map(item => item);
         const removeIndex = favoritesCities.map(function(item) { return item.id; })
-            .indexOf(cityId);
+            .indexOf(cityId); //find
         favoritesCities.splice(removeIndex, 1);
         this.setState({favoritesCities}, this.checkBeOnFavoritesCities.bind(this, cityId));
     }
     handleChange(cityId) {
-        const searchCity = this.cities.find((city) => city.id === Number(cityId))
-        this.setState({changeCity: searchCity})
+        this.setState({changeCityId: cityId})
         this.checkBeOnFavoritesCities(cityId);
     }
 
@@ -48,16 +49,24 @@ export class Layout extends Component {
         }
     }
 
+    prepareSelectOptionsArray() {
+        const selectOptionsArray = [];
+        for(let id in this.cities) {
+            selectOptionsArray.push({id: id, name: this.cities[id].name})
+        }
+        return selectOptionsArray
+    }
+
     render() {
-        const { favoritesCities, changeCity, showAddFavoritesButton } = this.state;
+        const { changeCityId, showAddFavoritesButton, cities } = this.state;
         return (
             <div style={{height: "1000px"}}>
                 <div style={{float: "left", margin: "0 15px 0 15px", width: '300px'}}>
                     <h3>Search</h3>
-                    <SearchCity  cities={this.cities} handleChange={this.handleChange}></SearchCity>
-                    <CityWeatherInfo showButton={showAddFavoritesButton} addToFavorites={this.addToFavorites} city={changeCity}></CityWeatherInfo>
+                    <SearchCity  cities={this.prepareSelectOptionsArray()} handleChange={this.handleChange}></SearchCity>
+                    <CityWeatherInfo showButton={showAddFavoritesButton} addToFavorites={this.addToFavorites} changeCityId={changeCityId} city={cities[changeCityId]}></CityWeatherInfo>
                 </div>
-                <CityList deleteInFavorites={this.deleteInFavorites} heading={'Список избранных городов'} cities={favoritesCities}></CityList>
+                <CityList deleteInFavorites={this.deleteInFavorites} heading={'Список избранных городов'} cities={cities}></CityList>
             </div>
         );
     }

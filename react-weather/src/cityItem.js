@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CityItem = ({ city, deleteInFavorites }) => {
-    const handleCLick = () => {
+    const handleCLick = () => { //вынести в компонент
         deleteInFavorites(city.id)
     };
     return <li>

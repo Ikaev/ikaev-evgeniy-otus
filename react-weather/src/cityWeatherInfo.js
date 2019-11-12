@@ -1,12 +1,9 @@
 import React from 'react'
 
-const CityWeatherInfo = ({ city, addToFavorites, showButton }) => {
-    const handleCLick = () => {
-        addToFavorites(city.id)
-    };
+const CityWeatherInfo = ({ changeCityId, city, addToFavorites, showButton }) => {
     const ShowButton = ( { showBtn }) => {
       if (showBtn) {
-          return <button onClick={handleCLick}>
+          return <button onClick={addToFavorites.bind(this, changeCityId)}>
               Add to favorites
           </button>
       } else return null

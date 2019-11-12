@@ -1,9 +1,10 @@
 import React from 'react'
 
-const select = ({ cities, handleChange }) => {
+const Select = ({ cities, handleChange }) => {
     const handleSearchChange = (event) => {
         handleChange(event.currentTarget.value)
     };
+
     return <label>
         City:
         <select onChange={handleSearchChange}>
@@ -14,4 +15,4 @@ const select = ({ cities, handleChange }) => {
         </select>
     </label>
 };
-export default select
+export default Select
