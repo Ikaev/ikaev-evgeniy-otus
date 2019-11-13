@@ -1,13 +1,6 @@
 import React from 'react'
-
-const CityWeatherInfo = ({ changeCityId, city, addToFavorites, showButton }) => {
-    const ShowButton = ( { showBtn }) => {
-      if (showBtn) {
-          return <button onClick={addToFavorites.bind(this, changeCityId)}>
-              Add to favorites
-          </button>
-      } else return null
-    };
+import Button from "./button";
+const CityWeatherInfo = ({  city, showButton, ...props }) => {
     if (city) {
         return <div>
             <h3>{city.name}</h3>
@@ -34,7 +27,7 @@ const CityWeatherInfo = ({ changeCityId, city, addToFavorites, showButton }) => 
                 <span>Max temperature:</span>
                 <span> {city.temperature.temp_max}C</span>
             </div>
-            <ShowButton showBtn={showButton}/>
+            <Button label={'Add to favorites'} {...props}/>
         </div>
     }
     return <div>

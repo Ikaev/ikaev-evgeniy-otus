@@ -1,12 +1,10 @@
 import React from 'react'
+import Button from "./button";
 
-const CityItem = ({ cityName, deleteInFavorites }) => {
-    const handleCLick = () => { //вынести в компонент
-        deleteInFavorites(city.id)
-    };
+const CityItem = ({ cityName, ...props }) => {
     return <li>
         {cityName}
-        <button onClick={handleCLick}>Delete</button>
+        <Button label={'Delete'} {...props}/>
     </li>
 };
 export default CityItem
