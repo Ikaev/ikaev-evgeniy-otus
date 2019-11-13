@@ -15,16 +15,19 @@ export class Layout extends Component {
         this.addToFavorites = this.addToFavorites.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.deleteInFavorites = this.deleteInFavorites.bind(this);
-        this.checkBeOnFavoritesCities = this.checkBeOnFavoritesCities.bind(this);
+        // this.checkBeOnFavoritesCities = this.checkBeOnFavoritesCities.bind(this);
         this.prepareSelectOptionsArray = this.prepareSelectOptionsArray.bind(this);
         this.cities = this.state.cities;
     }
     // Переписать на работу с объектом
     addToFavorites(cityId) {
-        const favoritesCity = this.cities.find((city) => city.id === cityId);
-        const favoritesCities = this.state.favoritesCities.map(item => item);
-        favoritesCities.push(favoritesCity);
-        this.setState({favoritesCities}, this.checkBeOnFavoritesCities.bind(this, cityId));
+        const { cities } = this.state;
+        cities[cityId].is_favorites = true
+        this.setState({cities})
+        // const favoritesCity = this.cities.find((city) => city.id === cityId);
+        // const favoritesCities = this.state.favoritesCities.map(item => item);
+        // favoritesCities.push(favoritesCity);
+        // this.setState({favoritesCities}, this.checkBeOnFavoritesCities.bind(this, cityId));
 
     }
     deleteInFavorites(cityId) {
@@ -36,18 +39,18 @@ export class Layout extends Component {
     }
     handleChange(cityId) {
         this.setState({changeCityId: cityId})
-        this.checkBeOnFavoritesCities(cityId);
+        // this.checkBeOnFavoritesCities(cityId);
     }
 
-    checkBeOnFavoritesCities(cityId) {
-        const favoritesCities = this.state.favoritesCities.map(item => item);
-        const beOnFavoritesCities = favoritesCities.find(city => city.id === Number(cityId))
-        if (beOnFavoritesCities) {
-            this.setState({showAddFavoritesButton: false})
-        } else {
-            this.setState({showAddFavoritesButton: true})
-        }
-    }
+    // checkBeOnFavoritesCities(cityId) {
+    //     const favoritesCities = this.state.favoritesCities.map(item => item);
+    //     const beOnFavoritesCities = favoritesCities.find(city => city.id === Number(cityId))
+    //     if (beOnFavoritesCities) {
+    //         this.setState({showAddFavoritesButton: false})
+    //     } else {
+    //         this.setState({showAddFavoritesButton: true})
+    //     }
+    // }
 
     prepareSelectOptionsArray() {
         const selectOptionsArray = [];

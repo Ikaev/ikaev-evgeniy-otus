@@ -1,11 +1,11 @@
 import React from 'react'
 
-const CityItem = ({ city, deleteInFavorites }) => {
+const CityItem = ({ cityName, deleteInFavorites }) => {
     const handleCLick = () => { //вынести в компонент
         deleteInFavorites(city.id)
     };
     return <li>
-        {city.name}
+        {cityName}
         <button onClick={handleCLick}>Delete</button>
     </li>
 };
