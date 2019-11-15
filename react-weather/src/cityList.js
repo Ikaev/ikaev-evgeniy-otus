@@ -1,7 +1,7 @@
 import React from 'react'
 import CityItem from "./cityItem";
 
-const CityItemFormation = ({allCities, deleteInFavorites}) => {
+const CityItemFormation = ({allCities, clickFunction}) => {
     const cityItemsArray = []
     for (let id in allCities) {
         if (allCities[id].is_favorites) {
@@ -12,7 +12,7 @@ const CityItemFormation = ({allCities, deleteInFavorites}) => {
         return (
             <ul>
                 {cityItemsArray.map(city => {
-                    return <CityItem deleteInFavorites={deleteInFavorites} key={city.id} cityId={city.id} cityName={city.name}/>
+                    return <CityItem clickFunction={clickFunction} key={city.id} cityId={city.id} cityName={city.name}/>
                 })}
             </ul>
         )
@@ -20,10 +20,10 @@ const CityItemFormation = ({allCities, deleteInFavorites}) => {
         return <div>Favorites list is empty</div>
     }
 }
-const CityList = ({cities, heading, deleteInFavorites}) => {
+const CityList = ({cities, heading, clickFunction}) => {
     return <div style={{float: "left", margin: "0 15px 0 15px"}}>
         <h3>{heading}</h3>
-        <CityItemFormation allCities={cities} deleteInFavorites={deleteInFavorites}/>
+        <CityItemFormation allCities={cities} clickFunction={clickFunction}/>
     </div>
 };
 export default CityList

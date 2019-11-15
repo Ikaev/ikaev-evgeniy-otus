@@ -1,14 +1,6 @@
 import React from 'react'
 
-const Button = ({ cityId, deleteInFavorites, addToFavorites, label }) => {
-    const handleCLick = () => {
-        if (deleteInFavorites) {
-            deleteInFavorites(cityId)
-        } else if (addToFavorites) {
-            addToFavorites(cityId)
-        }
-    };
-    return <button onClick={handleCLick}>{label}</button>
-
+const Button = ({ cityId, clickFunction, label }) => {
+    return <button onClick={clickFunction.bind(this, cityId)}>{label}</button>
 };
 export default Button

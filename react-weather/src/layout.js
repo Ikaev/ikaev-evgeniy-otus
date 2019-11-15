@@ -48,9 +48,9 @@ export class Layout extends Component {
                 <div style={{float: "left", margin: "0 15px 0 15px", width: '300px'}}>
                     <h3>Search</h3>
                     <SearchCity  cities={this.prepareSelectOptionsArray()} handleChange={this.handleChange}/>
-                    <CityWeatherInfo showButton={showAddFavoritesButton} addToFavorites={this.addToFavorites} cityId={changeCityId} city={cities[changeCityId]}/>
+                    <CityWeatherInfo showButton={showAddFavoritesButton} clickFunction={this.addToFavorites} cityId={changeCityId} city={cities[changeCityId]}/>
                 </div>
-                <CityList deleteInFavorites={this.deleteInFavorites} heading={'Список избранных городов'} cities={cities}/>
+                <CityList clickFunction={this.deleteInFavorites} heading={'Список избранных городов'} cities={cities}/>
             </div>
         );
     }
