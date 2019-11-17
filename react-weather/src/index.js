@@ -2,6 +2,10 @@ import React from 'react'
 import { render } from 'react-dom';
 import  cities  from './cities';
 
-import { Layout } from './layout';
+import App  from './app';
+import store from "./store";
+import {Provider} from 'react-redux'
 
-render(<Layout cities={cities}/>, document.getElementById('root'));
+render(<Provider store={store}>
+    <App cities={cities}/>
+</Provider>, document.getElementById('root'));
